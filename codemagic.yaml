@@ -1,5 +1,5 @@
 workflows:
-  hello-world:
-    name: Hello world workflow
+  new-workflow:
+    name: New Workflow🔥
     scripts:
       - echo "Hello World!"
