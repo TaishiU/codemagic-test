@@ -1,5 +1,8 @@
 workflows:
   new-workflow:
-    name: New Workflow🔥
+    name: PR Yeah✌️
+    triggering:
+      events:
+        - pull_request
     scripts:
-      - echo "Success😆"
+      - echo "プルリク作成時にcodemagic起動🔥"
