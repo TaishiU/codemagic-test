@@ -1,8 +1,66 @@
+#workflows:
+#  new-workflow:
+#    name: PRありがとう✌️ビルドしま〜す！
+#    triggering:
+#      events:
+#        - pull_request
+#    scripts:
+#      - echo "プルリク作成時にcodemagic起動🔥"
+
 workflows:
-  new-workflow:
-    name: PR Yeah✌️
+  Thanks-for-your-PR:
+    name: PRありがとう✌テストするね️！
+    max_build_duration: 60
+    environment:
+      flutter: stable
+      xcode: '13.2'
+      cocoapods: default
+    cache:
+      cache_paths: []
     triggering:
       events:
         - pull_request
+      branch_patterns:
+        - pattern: '*'
+          include: true
+          source: true
+      tag_patterns:
+        - pattern: '*'
+          include: true
     scripts:
-      - echo "プルリク作成時にcodemagic起動🔥"
+#      - |
+#        # set up debug keystore
+#        rm -f ~/.android/debug.keystore
+#        keytool -genkeypair \
+#          -alias androiddebugkey \
+#          -keypass android \
+#          -keystore ~/.android/debug.keystore \
+#          -storepass android \
+#          -dname 'CN=Android Debug,O=Android,C=US' \
+#          -keyalg 'RSA' \
+#          -keysize 2048 \
+#          -validity 10000
+#      - |
+#        # set up local properties
+#        echo "flutter.sdk=$HOME/programs/flutter" > "$FCI_BUILD_DIR/android/local.properties"
+      - flutter packages pub get
+      - flutter analyze
+#      - flutter build apk --debug
+#      - find . -name "Podfile" -execdir pod install \;
+#      - flutter build ios --debug --no-codesign
+#    artifacts:
+#      - build/**/outputs/apk/**/*.apk
+#      - build/**/outputs/bundle/**/*.aab
+#      - build/**/outputs/**/mapping.txt
+#      - build/ios/ipa/*.ipa
+#      - /tmp/xcodebuild_logs/*.log
+#      - '*.snap'
+#      - build/windows/**/*.msix
+#      - flutter_drive.log
+    publishing:
+      slack:
+        channel: "#\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u958B\u767A\u7528"
+        notify_on_build_start: true
+
+
+
