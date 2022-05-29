@@ -2,4 +2,4 @@ workflows:
   new-workflow:
     name: New Workflow🔥
     scripts:
-      - echo "Hello World!"
+      - echo "Success😆"
